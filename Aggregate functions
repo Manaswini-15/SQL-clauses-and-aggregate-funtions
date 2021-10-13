@@ -1,0 +1,74 @@
+An aggregate function allows you to perform a calculation on a set of values to return a single scalar value. We often use aggregate functions with the GROUP BY and HAVING clauses of the SELECT statement.
+
+The following are the most commonly used SQL aggregate functions:
+
+AVG – calculates the average of a set of values.
+COUNT – counts rows in a specified table or view.
+MIN – gets the minimum value in a set of values.
+MAX – gets the maximum value in a set of values.
+SUM – calculates the sum of values.
+SQL aggregate functions syntax
+To call an aggregate function, you use the following syntax:
+
+aggregate_function (DISTINCT | ALL expression)
+Let’s examine the syntax above in greater detail:
+
+First, specify an aggregate function that you want to use e.g., MIN, MAX, AVG, SUM or COUNT.
+Second, put DISTINCT or ALL modifier followed by an expression inside parentheses. 
+If you explicitly use the DISTINCT modifier, the aggregate function ignores duplicate values and only consider the unique values. 
+you use the ALL modifier, the aggregate function uses all values for calculation or evaluation.
+The  ALL modifier is used by default if you do not specify any modifier explicitly.
+SQL aggregate function examples
+Let’s take a look some examples of using SQL aggregate functions.
+
+->COUNT function example
+To get the number of products in the products table, you use the COUNT function as follows:
+
+SELECT 
+    COUNT(*)
+FROM
+    products;
+SQL COUNT function example
+->AVG function example
+To calculate the average units in stock of the products, you use the AVG function as follows:
+SELECT 
+    AVG(unitsinstock)
+FROM
+    products;
+SQL avg units in stock
+To calculate units in stock by product category, you use the AVG function with the  GROUP BY clause as follows:
+SELECT 
+    categoryid, AVG(unitsinstock)
+FROM
+    products
+GROUP BY categoryid;
+SQL avg group by
+
+->SUM function example
+To calculate the sum of units in stock by product category, you use the SUM function with the  GROUP BY clause as the following query:
+
+SELECT 
+    categoryid, SUM(unitsinstock)
+FROM
+    products
+GROUP BY categoryid;
+SQL SUM example
+->MIN function example
+To get the minimum units in stock of products in the products table, you use the MIN function as follows:
+
+SELECT 
+    MIN(unitsinstock)
+FROM
+    products;
+
+->MAX function example
+To get the maximum units in stock of products in the products table, you use the MAX function as shown in the following query:
+
+SELECT 
+    MAX(unitsinstock)
+FROM
+    products;
+
+
+
+
