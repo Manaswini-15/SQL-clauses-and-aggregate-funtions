@@ -1,4 +1,5 @@
-An aggregate function allows you to perform a calculation on a set of values to return a single scalar value. We often use aggregate functions with the GROUP BY and HAVING clauses of the SELECT statement.
+An aggregate function allows you to perform a calculation on a set of values to return a single scalar value.
+We often use aggregate functions with the GROUP BY and HAVING clauses of the SELECT statement.
 
 The following are the most commonly used SQL aggregate functions:
 
@@ -29,6 +30,27 @@ SELECT
 FROM
     products;
 SQL COUNT function example
+The COUNT() function returns the number of the value in a set.
+
+For example, you can use the COUNT() function to get the number of products in the products table as shown in the following query:
+
+SELECT 
+    COUNT(*) AS total
+FROM 
+    product;
+The following statement uses the COUNT() function with the GROUP BY clause to get the number of products for each product line:
+
+SELECT 
+    productLine, 
+    COUNT(*)
+FROM
+    products
+GROUP BY productLine
+ORDER BY productLine;
+
+MySQL Aggregate Function - COUNT example
+
+
 ->AVG function example
 To calculate the average units in stock of the products, you use the AVG function as follows:
 SELECT 
@@ -52,7 +74,46 @@ SELECT
 FROM
     products
 GROUP BY categoryid;
+The following example uses the AVG() function to calculate the average buy price for each product line:
+
+SELECT 
+    productLine, 
+    AVG(buyPrice)
+FROM
+    products
+GROUP BY productLine
+ORDER BY productLine;
 SQL SUM example
+The SUM() function returns the sum of values in a set. The SUM() function ignores NULL. If no matching row found, the SUM() function returns NULL.
+
+To get the total order value of each product, you can use the SUM() function in conjunction with the GROUP BY clause as follows:
+
+SELECT 
+    productCode, 
+    SUM(priceEach * quantityOrdered) total
+FROM
+    orderDetails
+GROUP BY productCode
+ORDER BY total DESC;
+MySQL Aggregate Function - SUM example
+To see the result in more detail, you can join the orderdetails table to the products table as shown in the following query:
+
+SELECT 
+    productCode,
+    productName,
+    SUM(priceEach * quantityOrdered) total
+FROM
+    orderDetails
+        INNER JOIN
+    products USING (productCode)
+GROUP BY productCode
+ORDER BY total;
+Code language: SQL (Structured Query Language) (sql)
+Try It Out
+
+MySQL Aggregate Function - SUM with JOIN example
+
+
 ->MIN function example
 To get the minimum units in stock of products in the products table, you use the MIN function as follows:
 
@@ -60,6 +121,33 @@ SELECT
     MIN(unitsinstock)
 FROM
     products;
+    The MIN() function returns the minimum value in a set of values.
+
+MIN(expression)
+Code language: SQL (Structured Query Language) (sql)
+For example, the following query uses the MIN() function to find the lowest price from the products table:
+
+SELECT 
+    MIN(buyPrice) lowest_price
+FROM 
+    products;
+Code language: SQL (Structured Query Language) (sql)
+Try It Out
+
+MySQL Aggregate Function - MIN example
+The following example uses the MIN() function with the GROUP BY clause to get the lowest price per product line:
+
+SELECT 
+    productLine, 
+    MIN(buyPrice)
+FROM
+    products
+GROUP BY productLine
+ORDER BY MIN(buyPrice);
+Code language: SQL (Structured Query Language) (sql)
+Try It Out
+
+MySQL Aggregate Function - MIN with GROUP BY example
 
 ->MAX function example
 To get the maximum units in stock of products in the products table, you use the MAX function as shown in the following query:
@@ -69,18 +157,32 @@ SELECT
 FROM
     products;
     SQl clauses:
-    WHERE CLAUSE:-
-    Here we select the rows where the category id is 2 and year released is 2008:
-    SELECT * FROM `movies` WHERE `category_id` = 2 AND `year_released` = 2008;
-    Here we select the rows where the membership number is in 1,2,3:
-    SELECT * FROM `members` WHERE `membership_number` IN (1,2,3);
-    Here we select the rows where thw gender is equal to female:
-    SELECT * FROM `members` WHERE `gender` = 'Female';
-    Here we selesct the rows where the category id is in between:
-    SELECT * FROM `movies` WHERE `category_id`<> 1;
-    SELECT * FROM `movierentals` WHERE `return_date` < '2012-06-25' AND movie_returned = 0;
+    The MAX() function returns the maximum value in a set.
+
+MAX(expression)
+Code language: SQL (Structured Query Language) (sql)
+For example, you can use the MAX() function to get the highest buy price from the products table as shown in the following query:
+
+SELECT 
+     MAX(buyPrice) highest_price
+FROM 
+     products;
+Code language: SQL (Structured Query Language) (sql)
+Try It Out
+
+MySQL Aggregate Function - MAX example
+The following statement uses the MAX() function with the GROUP BY clause to get the highest price per product line:
+
+SELECT 
+    productLine, MAX(buyPrice)
+FROM
+    products
+GROUP BY productLine
+ORDER BY MAX(buyPrice) DESC;
+Code language: SQL (Structured Query Language) (sql)
+Try It Out
+
+MySQL Aggregate Function - MAX with GROUP BY example
     
-
-
 
 
