@@ -71,6 +71,77 @@ ASC: It is used to sort the result set in ascending order by expression.
 
 DESC: It sorts the result set in descending order by expression.
 
+4)
+SELECT BookName, Price, Lang From Books WHERE CatID >1;
+WHERE clause combined with – AND LOGICAL Operator
+The WHERE condition in MySQL when used together with the AND logical operator, is only executed if ALL filter criteria specified are met.
+
+Let’s now look at a practical example – Suppose we want to get a list of all the movies in category 2 that were released in 2008, we would use the script shown below is achieve that.
+SELECT * FROM `movies` WHERE `category_id` = 2 AND `year_released` = 2008;
+Executing the above script in MySQL workbench against the “myflixdb” produces the following results.
+
+movie_id	title	director	year_released	category_id
+2	Forgetting Sarah Marshal	Nicholas Stoller	2008	2
+
+WHERE clause combined with – OR LOGICAL Operator
+The WHERE clause when used together with the OR operator, is only executed if any or the entire specified filter criteria is met.
+The following script gets all the movies in either category 1 or category 2
+SELECT * FROM `movies` WHERE `category_id` = 1 OR `category_id` = 2;
+Executing the above script in MySQL workbench against the “myflixdb” produces the following results.
+
+movie_id	title	director	year_released	category_id
+1	Pirates of the Caribean 4	Rob Marshall	2011	1
+2	Forgetting Sarah Marshal	Nicholas Stoller	2008	2
+WHERE clause combined with – IN Keyword
+The WHERE in MySQL clause, when used together with the IN keyword only affects the rows whose values matches the list of values provided in the IN keyword. The MySQL IN statement helps to reduce number of OR clauses you may have to use.
+The following MySQL WHERE IN query gives rows where membership_number is either 1 , 2 or 3
+SELECT * FROM `members` WHERE `membership_number` IN (1,2,3);
+Executing the above script in MySQL workbench against the “myflixdb” produces the following results.
+
+
+
+WHERE clause combined with – NOT IN Keyword
+The WHERE clause when used together with the NOT IN keyword DOES NOT affects the rows whose values matches the list of values provided in the NOT IN keyword.
+The following query gives rows where membership_number is NOT 1 , 2 or 3
+SELECT * FROM `members` WHERE `membership_number` NOT IN (1,2,3);
+Executing the above script in MySQL workbench against the “myflixdb” produces the following results.
+
+
+membership_number	full_names	gender	date_of_birth	physical_address	postal_address	contct_number	email
+4	Gloria Williams	Female	14-02-1984	2nd Street 23	NULL	NULL	NULL
+WHERE clause combined with – COMPARISON Operators
+The less than (), equal to (=), not equal to () comparison operators can be used with the WHERE Clause
+= Equal To
+The following script gets all the female members from the members table using the equal to comparison operator.
+SELECT * FROM `members` WHERE `gender` = 'Female';
+Executing the above script in MySQL workbench against the “myflixdb” produces the following results.
+
+
+membership_number	full_names	gender	date_of_birth	physical_address	postal_address	contct_number	email
+1	Janet Jones	Female	21-07-1980	First Street Plot No 4	Private Bag	0759 253 542	janetjones@yagoo.cm
+2	Janet Smith Jones	Female	23-06-1980	Melrose 123	NULL	NULL	jj@fstreet.com
+4	Gloria Williams	Female	14-02-1984	2nd Street 23	NULL	NULL	NULL
+
+> Greater than
+The following script gets all the payments that are greater than 2,000 from the payments table.
+SELECT * FROM `payments` WHERE `amount_paid` > 2000;
+Executing the above script in MySQL workbench against the “myflixdb” produces the following results.
+
+payment_id	membership_number	payment_date	description	amount_paid	external_reference_number
+1	1	23-07-2012	Movie rental payment	2500	11
+3	3	30-07-2012	Movie rental payment	6000	NULL
+< > Not Equal To
+The following script gets all the movies whose category id is not 1.
+SELECT * FROM `movies` WHERE `category_id`<> 1;
+Executing the above script in MySQL workbench against the “myflixdb” produces the following results.
+
+movie_id	title	director	year_released	category_id
+2	Forgetting Sarah Marshal	Nicholas Stoller	2008	2
+5	Daddy's Little Girls	NULL	2007	8
+6	Angels and Demons	NULL	2007	6
+7	Davinci Code	NULL	2007	6
+9	Honey mooners	John Schultz	2005	8
+
 
 
 
