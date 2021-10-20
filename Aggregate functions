@@ -1,188 +1,111 @@
-An aggregate function allows you to perform a calculation on a set of values to return a single scalar value.
-We often use aggregate functions with the GROUP BY and HAVING clauses of the SELECT statement.
+SQL Aggregate Functions
+SQL aggregate functions return a single
+value, calculated from values in a column.
+Useful aggregate functions:
+•AVG() - Returns the average value
+•COUNT() - Returns the number of rows
+•FIRST() - Returns the first value
+•LAST() - Returns the last value
+•MAX() - Returns the largest value
+•MIN() - Returns the smallest value
+•SUM() - Returns the sum
+The AVG() Function
+The AVG() function returns the average value of a numeric
+column.
+SQL AVG() Syntax
+SELECT AVG(column_name) FROM table_name
 
-The following are the most commonly used SQL aggregate functions:
+Examples:
+1)
+  SELECT AVG(cost) AS "Average Cost" FROM sweets
+WHERE category = 'Jelabi';
+   Here in this example, the average cost is displayed using cost column from sweets table where category is jelabi.
+2)
+SELECT AVG(price) FROM SHOP;
+ 
+   Here in this example, the average price is displayed using price column from SHOP table.
 
-AVG – calculates the average of a set of values.
-COUNT – counts rows in a specified table or view.
-MIN – gets the minimum value in a set of values.
-MAX – gets the maximum value in a set of values.
-SUM – calculates the sum of values.
-SQL aggregate functions syntax
-To call an aggregate function, you use the following syntax:
+  
+ COUNT() function:
+ The COUNT() function returns the number of rows that matches a specified criteria.
+ SQL COUNT(column_name) Syntax
+The COUNT(column_name) function returns the number of values
+(NULL values will not be counted) of the specified column:
+SELECT COUNT(column_name) FROM table_name
 
-aggregate_function (DISTINCT | ALL expression)
-Let’s examine the syntax above in greater detail:
+Examples:
+1) 
+   SELECT COUNT(ProductID)
+   FROM Products;
+   Here in this example,the count function returns number of rows with productid from Products table.
+   
+2)
+  SELECT count(sweet_id) FROM sweets
+  WHERE category="name";
+ 3)SELECT COUNT(price) FROM SHOP;
+  here in this example, the count funtion returns number of rows in price from SHOP table.
 
-First, specify an aggregate function that you want to use e.g., MIN, MAX, AVG, SUM or COUNT.
-Second, put DISTINCT or ALL modifier followed by an expression inside parentheses. 
-If you explicitly use the DISTINCT modifier, the aggregate function ignores duplicate values and only consider the unique values. 
-you use the ALL modifier, the aggregate function uses all values for calculation or evaluation.
-The  ALL modifier is used by default if you do not specify any modifier explicitly.
-SQL aggregate function examples
-Let’s take a look some examples of using SQL aggregate functions.
+SUM() function:
+Examples:
+ 1)
+ SELECT SUM(Quantity)
+  FROM OrderDetails;
+  here in this example, the sum function returns Quantity  sum from OrderDetails.
+ 2)
+   SELECT SUM(price)
+  FROM SHOP;
+   here in this example, the sum funtion returns  sum of the price from SHOP.
+  
+ MAX() function:
+ Examples:
+ 1)
+  SELECT MAX(Quantity)
+  FROM OrderDetails;
+  here in this example, the max function returns  max Quantity  from OrderDetails.
+ 2)
+   SELECT MAX(price)
+  FROM SHOP;
+   here in this example, the max funtion returns max price from SHOP.
 
-->COUNT function example
-To get the number of products in the products table, you use the COUNT function as follows:
-
-SELECT 
-    COUNT(*)
-FROM
-    products;
-SQL COUNT function example
-The COUNT() function returns the number of the value in a set.
-
-For example, you can use the COUNT() function to get the number of products in the products table as shown in the following query:
-
-SELECT 
-    COUNT(*) AS total
-FROM 
-    product;
-The following statement uses the COUNT() function with the GROUP BY clause to get the number of products for each product line:
-
-SELECT 
-    productLine, 
-    COUNT(*)
-FROM
-    products
-GROUP BY productLine
-ORDER BY productLine;
-
-MySQL Aggregate Function - COUNT example
-
-
-->AVG function example
-To calculate the average units in stock of the products, you use the AVG function as follows:
-SELECT 
-    AVG(unitsinstock)
-FROM
-    products;
-SQL avg units in stock
-To calculate units in stock by product category, you use the AVG function with the  GROUP BY clause as follows:
-SELECT 
-    categoryid, AVG(unitsinstock)
-FROM
-    products
-GROUP BY categoryid;
-SQL avg group by
-
-->SUM function example
-To calculate the sum of units in stock by product category, you use the SUM function with the  GROUP BY clause as the following query:
-
-SELECT 
-    categoryid, SUM(unitsinstock)
-FROM
-    products
-GROUP BY categoryid;
-The following example uses the AVG() function to calculate the average buy price for each product line:
-
-SELECT 
-    productLine, 
-    AVG(buyPrice)
-FROM
-    products
-GROUP BY productLine
-ORDER BY productLine;
-SQL SUM example
-The SUM() function returns the sum of values in a set. The SUM() function ignores NULL. If no matching row found, the SUM() function returns NULL.
-
-To get the total order value of each product, you can use the SUM() function in conjunction with the GROUP BY clause as follows:
-
-SELECT 
-    productCode, 
-    SUM(priceEach * quantityOrdered) total
-FROM
-    orderDetails
-GROUP BY productCode
-ORDER BY total DESC;
-MySQL Aggregate Function - SUM example
-To see the result in more detail, you can join the orderdetails table to the products table as shown in the following query:
-
-SELECT 
-    productCode,
-    productName,
-    SUM(priceEach * quantityOrdered) total
-FROM
-    orderDetails
-        INNER JOIN
-    products USING (productCode)
-GROUP BY productCode
-ORDER BY total;
-Code language: SQL (Structured Query Language) (sql)
-Try It Out
-
-MySQL Aggregate Function - SUM with JOIN example
-
-
-->MIN function example
-To get the minimum units in stock of products in the products table, you use the MIN function as follows:
-
-SELECT 
-    MIN(unitsinstock)
-FROM
-    products;
-    The MIN() function returns the minimum value in a set of values.
-
-MIN(expression)
-Code language: SQL (Structured Query Language) (sql)
-For example, the following query uses the MIN() function to find the lowest price from the products table:
-
-SELECT 
-    MIN(buyPrice) lowest_price
-FROM 
-    products;
-Code language: SQL (Structured Query Language) (sql)
-Try It Out
-
-MySQL Aggregate Function - MIN example
-The following example uses the MIN() function with the GROUP BY clause to get the lowest price per product line:
-
-SELECT 
-    productLine, 
-    MIN(buyPrice)
-FROM
-    products
-GROUP BY productLine
-ORDER BY MIN(buyPrice);
-Code language: SQL (Structured Query Language) (sql)
-Try It Out
-
-MySQL Aggregate Function - MIN with GROUP BY example
-
-->MAX function example
-To get the maximum units in stock of products in the products table, you use the MAX function as shown in the following query:
-
-SELECT 
-    MAX(unitsinstock)
-FROM
-    products;
-    SQl clauses:
-    The MAX() function returns the maximum value in a set.
-
-MAX(expression)
-Code language: SQL (Structured Query Language) (sql)
-For example, you can use the MAX() function to get the highest buy price from the products table as shown in the following query:
-
-SELECT 
-     MAX(buyPrice) highest_price
-FROM 
-     products;
-Code language: SQL (Structured Query Language) (sql)
-Try It Out
-
-MySQL Aggregate Function - MAX example
-The following statement uses the MAX() function with the GROUP BY clause to get the highest price per product line:
-
-SELECT 
-    productLine, MAX(buyPrice)
-FROM
-    products
-GROUP BY productLine
-ORDER BY MAX(buyPrice) DESC;
-Code language: SQL (Structured Query Language) (sql)
-Try It Out
-
-MySQL Aggregate Function - MAX with GROUP BY example
+ MIN() function:
+ Examples:
+ 1)
+  SELECT MIN(Quantity)
+  FROM OrderDetails;
+  here in this example, the min function returns minimum Quantity  from OrderDetails.
+ 2)
+   SELECT MIN(price)
+  FROM SHOP;
+   here in this example, the min funtion returns minimum price from SHOP.
+  FIRST() function:
+ Examples:
+ 1)
+  SELECT FIRST(Quantity)
+  FROM OrderDetails;
+  here in this example, the first function returns  first Quantity from OrderDetails.
+ 2)
+   SELECT FIRST(price)
+  FROM SHOP;
+   here in this example, the first funtion returns first price from SHOP.
+   LAST() function:
+   Examples:
+    1)
+  SELECT LAST(Quantity)
+  FROM OrderDetails;
+  here in this example, the last function returns  last Quantity from OrderDetails.
+ 2)
+   SELECT LAST(price)
+  FROM SHOP;
+   here in this example, the last funtion returns last price from SHOP.
+  Hence, this are the aggregate functions in SQL.
+   
     
+ 
+ 
+   
+  
+   
+  
 
 
+ 
