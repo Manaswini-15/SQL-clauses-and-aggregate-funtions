@@ -1,6 +1,5 @@
-SQL Aggregate Functions
-SQL aggregate functions return a single
-value, calculated from values in a column.
+SQL Aggregate Functions:
+SQL aggregate functions return a single value, calculated from values in a column.
 Useful aggregate functions:
 •AVG() - Returns the average value
 •COUNT() - Returns the number of rows
@@ -9,7 +8,9 @@ Useful aggregate functions:
 •MAX() - Returns the largest value
 •MIN() - Returns the smallest value
 •SUM() - Returns the sum
-The AVG() Function
+
+
+The AVG() Function:
 The AVG() function returns the average value of a numeric
 column.
 SQL AVG() Syntax
@@ -41,11 +42,16 @@ Examples:
    
 2)
   SELECT count(sweet_id) FROM sweets
-  WHERE category="name";
+  WHERE category="jelabi";
+  Here, in this example the number of  sweet ids are returned by count function from sweets table where category is jelabi.
+  
  3)SELECT COUNT(price) FROM SHOP;
   here in this example, the count funtion returns number of rows in price from SHOP table.
 
+
 SUM() function:
+Syntax: SELECT SUM(column_name) FROM table_name
+
 Examples:
  1)
  SELECT SUM(Quantity)
@@ -54,9 +60,12 @@ Examples:
  2)
    SELECT SUM(price)
   FROM SHOP;
-   here in this example, the sum funtion returns  sum of the price from SHOP.
+   here in this example, the sum funtion returns  sum of the price from SHOP table.
+  
   
  MAX() function:
+ Syntax: SELECT MAX(column_name) FROM table_name
+
  Examples:
  1)
   SELECT MAX(Quantity)
@@ -65,9 +74,12 @@ Examples:
  2)
    SELECT MAX(price)
   FROM SHOP;
-   here in this example, the max funtion returns max price from SHOP.
+   here in this example, the max funtion returns max price from SHOP table.
+
 
  MIN() function:
+ Syntax: SELECT MIN(column_name) FROM table_name
+
  Examples:
  1)
   SELECT MIN(Quantity)
@@ -76,8 +88,12 @@ Examples:
  2)
    SELECT MIN(price)
   FROM SHOP;
-   here in this example, the min funtion returns minimum price from SHOP.
+   here in this example, the min funtion returns minimum price from SHOP table.
+   
+   
   FIRST() function:
+  Syntax: SELECT FIRST(column_name) FROM table_name
+
  Examples:
  1)
   SELECT FIRST(Quantity)
@@ -85,17 +101,21 @@ Examples:
   here in this example, the first function returns  first Quantity from OrderDetails.
  2)
    SELECT FIRST(price)
-  FROM SHOP;
-   here in this example, the first funtion returns first price from SHOP.
+   FROM SHOP;
+   here in this example, the first funtion returns first price from SHOP table.
+   
+   
    LAST() function:
+   Syntax: SELECT LAST(column_name) FROM table_name
+
    Examples:
     1)
-  SELECT LAST(Quantity)
-  FROM OrderDetails;
+      SELECT LAST(Quantity)
+      FROM OrderDetails;
   here in this example, the last function returns  last Quantity from OrderDetails.
- 2)
-   SELECT LAST(price)
-  FROM SHOP;
+    2)
+     SELECT LAST(price)
+     FROM SHOP;
    here in this example, the last funtion returns last price from SHOP.
   Hence, this are the aggregate functions in SQL.
    
