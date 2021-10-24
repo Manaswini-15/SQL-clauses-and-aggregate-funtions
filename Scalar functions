@@ -1,0 +1,100 @@
+SQL scalar functions return a single value, based on the input
+value.
+Useful scalar functions:
+•UCASE() - Converts a field to upper case
+•LCASE() - Converts a field to lower case
+•MID() - Extract characters from a text field
+•LEN() - Returns the length of a text field
+•ROUND() - Rounds a numeric field to the number of decimals
+specified
+•NOW() - Returns the current system date and time
+•FORMAT() - Formats how a field is to be displayed
+
+
+
+The UCASE() Function
+The UCASE() function converts the value of a field to uppercase.
+SQL UCASE() Syntax
+SELECT UCASE(column_name) FROM table_name
+Syntax for SQL Server
+SELECT UPPER(column_name)FROM table_name
+
+Examples:
+1)
+SELECT UCASE(LastName) as Name FROM Employee
+2)
+SELECT UCASE(LastName) as Name FROM Teacher
+
+The LCASE() Function
+The LCASE() function converts the value of a
+field to lowercase.
+SQL LCASE() Syntax
+SELECT LCASE(column_name) FROM table_name
+Syntax for SQL Server
+SELECT LOWER(column_name) FROM table_name
+
+Examples:
+1)
+SELECT LCASE(name) FROM Employee
+2)
+SELECT LCASE(lastname) FROM Teacher
+
+
+The MID() Function
+The MID() function is used to extract characters from a text field.
+SQL MID() Syntax
+SELECT MID(column_name,start[,length]) FROM table_name
+Examples:
+1)
+SELECT MID(salary,start[,5]) FROM Employee
+2)
+SELECT MID(sales,start[,6]) FROM shopping
+
+
+The LEN() Function
+The LEN() function returns the length of the value in a text field.
+SQL LEN() Syntax
+SELECT LEN(column_name) FROM table_name
+Examples:
+1)
+SELECT LEN(Score) FROM games
+2)
+SELECT LEN(sales) FROM shopping
+
+
+
+The ROUND() Function
+The ROUND() function is used to round a numeric field to the number of decimals specified.
+SQL ROUND() Syntax
+SELECT ROUND(column_name,decimals) FROM table_name
+Examples:
+1)
+SELECT ROUND(sales,3) FROM Shop
+2)
+SELECT ROUND(lines,2) FROM shape
+
+
+The NOW() Function
+The NOW() function returns the current system date and time.
+SQL NOW() Syntax
+SELECT NOW() FROM table_name
+Examples:
+1)
+SELECT NOW() FROM Persons
+2)
+SELECT NOW() FROM Employees
+
+
+
+The FORMAT() Function
+The FORMAT() function is used to format how a field is to be displayed.
+SQL FORMAT() Syntax
+SELECT FORMAT(column_name,format) FROM table_name
+  Examples:
+  1)SELECT FORMAT(date,"YYYY-MM-DD").) FROM Employee
+  2)
+  SELECT FORMAT(date,"YYYY-MM-DD").) FROM Persons
+  
+
+
+
